@@ -93,6 +93,10 @@ pre-specified rule the external check is *inconclusive* as a validation of the m
 If you use this code, please cite the article (reference to be added on publication) and the datasets above.
 See `CITATION.cff`.
 
+## License
+
+Code: MIT (see `LICENSE`). The datasets keep their own licenses (ds004504: CC0; Dryad: CC0).
+
 ## Contact
 
 İlhami Sel, Department of Computer Engineering, İnönü University, Malatya, Türkiye — ilhami.sel@inonu.edu.tr

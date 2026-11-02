@@ -2,6 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "EnvSAX: envelope-based symbolic representation of resting-state EEG in Alzheimer's disease"
 type: software
+license: MIT
 authors:
   - family-names: Sel
     given-names: İlhami
