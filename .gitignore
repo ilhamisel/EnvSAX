@@ -1,0 +1,24 @@
+# data and intermediate files (not redistributed)
+data/
+cache/
+external_validation/02_DATA/
+*.mat
+*.edf
+*.set
+
+# run logs
+**/outputs/_log_*.txt
+*_log.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+~$*
+.vscode/
+.idea/

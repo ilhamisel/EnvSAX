@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "EnvSAX: envelope-based symbolic representation of resting-state EEG in Alzheimer's disease"
+type: software
+authors:
+  - family-names: Sel
+    given-names: İlhami
+    orcid: "https://orcid.org/0000-0003-0222-7017"
+    affiliation: "Department of Computer Engineering, İnönü University, Malatya, Türkiye"
+    email: ilhami.sel@inonu.edu.tr
+keywords:
+  - EEG
+  - Alzheimer's disease
+  - symbolic representation
+  - SAX
