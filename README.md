@@ -21,12 +21,18 @@ experiments/                 main pipeline on OpenNeuro ds004504 (36 AD, 29 HC)
 supplementary_analyses/
   shape_scale_rd_bootstrap/  shape/scale ablation (Table 8), bootstrap CI of r_d
   abba_check_rd_bandwise/    ABBA reference-component check (Table 5), band-wise r_d, M1–M1s ΔAUC CI
-external_validation/         frozen scale code applied to an independent cohort (Appendix A)
+external_validation/         frozen scale code applied to an independent cohort (Sections 2.5 and 3.5)
   03_PROTOCOL/               analysis protocol (original and amended), frozen encoder + hash
   04_EXPERIMENTS/code/       00_build_frozen_encoder.py … 06_results_table.py
   04_EXPERIMENTS/*/          fidelity, sensitivity and classification results
   05_FIGURES/                E1–E5 (SVG, PDF, PNG)
   06_REPORTS/RESULTS_COMPARISON.csv
+external_validation_v2/      participant-disjoint, label-free recalibration in the external cohort
+  01_PROTOCOL/               protocol, fold assignment, PROTOCOL_LOCK.json (sha256, locked before results)
+  02_EXPERIMENTS/code/       01_make_folds_and_lock.py, 02_oof_calibration.py, 03_figures.py, v2lib.py
+  02_EXPERIMENTS/*/          fold codebooks, bootstrap replicates, out-of-fold profiles, leakage check
+  03_RESULTS/                fidelity, paired differences, saturation, stability, repeated splits, DECISION.json
+  04_FIGURES/                V2-1–V2-5 (SVG, PDF, PNG)
 figures/                     manuscript figures 1–13 (SVG, PDF, PNG)
 ```
 
@@ -74,7 +80,17 @@ python 03_frozen_fidelity.py
 python 04_classify_dryad.py
 python 05_figures.py
 python 06_results_table.py
+
+# participant-disjoint recalibration (after 02_prepare_dryad.py); v2lib.py expects the first external
+# analysis under the name EnvSAX_EXTERNAL_VALIDATION next to external_validation_v2/
+cd ../../..
+ln -s external_validation EnvSAX_EXTERNAL_VALIDATION     # Windows: mklink /D EnvSAX_EXTERNAL_VALIDATION external_validation
+cd external_validation_v2/02_EXPERIMENTS/code
+python 02_oof_calibration.py      # checks the sha256 lock before running
+python 03_figures.py
 ```
+
+`01_make_folds_and_lock.py` was run once to create the folds and the lock; rerunning it is not needed.
 
 Evaluation is participant-level 5 × 5 repeated stratified cross-validation (`random_state=42`). Bootstrap
 seeds and other settings are stated in each script.
@@ -87,6 +103,8 @@ applied without modification. The protocol was fixed before the external EEG dat
 preserve the group-difference profile in the external cohort (r_d = 0.804, below the channel-shuffle reference
 0.810; band-mean-removed r_d = 0.118), whereas a label-free refit on that cohort did (r_d = 0.992). Under the
 pre-specified rule the external check is *inconclusive* as a validation of the method.
+
+A post hoc participant-disjoint check (`external_validation_v2/`), designed after these results were known but locked before its own results were computed, relearned the codebook without labels in five stratified folds (labels used only for stratification) and decoded each participant with a codebook that never saw its data. Out-of-fold r_d was 0.991 [0.967, 0.994], CCC 0.991 and band-mean-removed r_d 0.884 [0.794, 0.941], close to the full-cohort refit but below the protocol-defined criterion of 0.90 for band-mean-removed r_d; the pre-specified verdict is *partially supported*. This is a within-cohort calibration, not a frozen cross-site transfer. Participant-level window codes and decoded features are not included; the out-of-fold group profiles are.
 
 ## Citation
 

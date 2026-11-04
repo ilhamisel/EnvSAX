@@ -1,0 +1,71 @@
+{
+  "locked_at": "2026-11-02 13:39:33",
+  "note": "Locked before any V2 result was computed. V2 was designed after the first external evaluation (frozen r_d 0.804, full-cohort refit r_d 0.992) was known.",
+  "split": {
+    "primary": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42), manifest order, label used only for stratification",
+    "secondary": "RepeatedStratifiedKFold(n_splits=5, n_repeats=10, random_state=2026)"
+  },
+  "seeds": {
+    "calibration_windows": "default_rng([42, fold, crc32(participant_id)]), 25 windows per participant",
+    "bootstrap": "default_rng(49), 2000 replicates, within-group participant resampling",
+    "channel_shuffle": "default_rng(42), 10000 permutations",
+    "label_order_check": "default_rng(7)"
+  },
+  "fixed": {
+    "W": 40,
+    "a": 8,
+    "L": 8,
+    "bands": [
+      "delta",
+      "theta",
+      "alpha",
+      "beta",
+      "gamma"
+    ],
+    "n_cal_windows": 25
+  },
+  "fold_sizes": {
+    "1": {
+      "n": 28,
+      "n_AD": 9,
+      "n_CN": 19
+    },
+    "2": {
+      "n": 28,
+      "n_AD": 9,
+      "n_CN": 19
+    },
+    "3": {
+      "n": 28,
+      "n_AD": 9,
+      "n_CN": 19
+    },
+    "4": {
+      "n": 28,
+      "n_AD": 8,
+      "n_CN": 20
+    },
+    "5": {
+      "n": 27,
+      "n_AD": 8,
+      "n_CN": 19
+    }
+  },
+  "sha256": {
+    "01_PROTOCOL/OOF_CALIBRATION_PROTOCOL.md": "88bc4f136f0b00e0bc8a18360c7276e01f6232bc4acf2dcc6a3b4e58defb1caf",
+    "01_PROTOCOL/PARTICIPANT_FOLDS.csv": "b2cab10034e7c513f6e0e62bca64e031f6538c95ae9cdadf81f6fa58cb42b2b9",
+    "01_PROTOCOL/REPEATED_FOLDS.csv": "bc7f924b6ed02b08797cb64294a3bc82f6a170d851af5cbf8510a40ebf891b93",
+    "02_EXPERIMENTS/code/v2lib.py": "91334d0b8021a58d87a10fe4284e12cd749435a9ad54f2ddccb7a3ed2a4e567b",
+    "02_EXPERIMENTS/code/01_make_folds_and_lock.py": "78576958c771d2dc5a2b76af9517aecb5678d6e0121f34adcf3e045071c04ae9",
+    "02_EXPERIMENTS/code/02_oof_calibration.py": "671831d7ef5bacb6d6e1ec986c63d033c522db32c62c6fe5453ecf4eb23b6050"
+  },
+  "amendments": [
+    {
+      "at": "2026-11-02 13:40:06",
+      "file": "02_EXPERIMENTS/code/02_oof_calibration.py",
+      "sha256_before": "9722e468b822737b650388cb7257821ee0044ea322effb2d665a726141a62eb1",
+      "sha256_after": "671831d7ef5bacb6d6e1ec986c63d033c522db32c62c6fe5453ecf4eb23b6050",
+      "change": "CODEBOOK_fold{f}.json: fold=f -> fold=int(f) (numpy int64 not JSON serialisable). First run stopped at this line while writing outputs; no result was printed or inspected. No analysis, split, seed or threshold changed."
+    }
+  ]
+}

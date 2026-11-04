@@ -1,0 +1,2 @@
+# keep byte-identical files so the sha256 protocol lock verifies after checkout
+external_validation_v2/** -text

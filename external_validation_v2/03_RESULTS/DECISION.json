@@ -1,0 +1,85 @@
+{
+  "verdict": "Partially supported",
+  "criteria": {
+    "1_rd_ci_lo_gt_shuffle_q95": true,
+    "2_ccc_ge_0.90": true,
+    "3_bmr_ge_0.90_and_ci_lo_ge_0.70": false,
+    "4_mean_abs_delta_d_le_0.11": true,
+    "5_saturation_le_0.35_all_bands": true,
+    "6_breakpoint_between_fold_range_le_0.10": true
+  },
+  "not_supported_trigger": false,
+  "inconclusive_trigger": false,
+  "values": {
+    "r_d": [
+      0.9914212394675933,
+      0.967323648385234,
+      0.9943889904581877
+    ],
+    "ccc": [
+      0.9911670365824018,
+      0.9652088613609066,
+      0.9940937883544813
+    ],
+    "bmr": [
+      0.8842318742409376,
+      0.794497007240171,
+      0.9405192107251134
+    ],
+    "mean_abs_delta_d": [
+      0.05113118894282931,
+      0.04848914880463201,
+      0.08106762255724197
+    ],
+    "shuffle_q95": 0.9526579773698277,
+    "saturation_by_band": {
+      "delta": 0.24727058942407942,
+      "theta": 0.24622643964829605,
+      "alpha": 0.24930224155379285,
+      "beta": 0.25153445617709513,
+      "gamma": 0.24580694252430096
+    },
+    "max_breakpoint_range_by_band": {
+      "delta": 0.05891001224517822,
+      "theta": 0.06927490234375,
+      "alpha": 0.04482810199260712,
+      "beta": 0.04365462064743042,
+      "gamma": 0.059051670134067535
+    },
+    "repeated_bmr_min_max": [
+      0.8709260965567669,
+      0.8863613037948251
+    ]
+  },
+  "scope": "Channel order undocumented: channel-level interpretation exploratory. Not frozen cross-site transfer; not clinical generalisability.",
+  "checks": {
+    "leakage": {
+      "all_participants_heldout_once": true,
+      "any_participant_in_own_codebook": false,
+      "each_participant_in_exactly_4_codebooks": true,
+      "calibration_windows_only_from_calibration_participants": true
+    },
+    "label_independence": {
+      "codebook_signature": [
+        "self",
+        "lp_by_id",
+        "fold"
+      ],
+      "label_argument_present": false,
+      "codebook_identical_under_participant_order_permutation": true
+    },
+    "reproduction": {
+      "C1_r_d": 0.8037336291093641,
+      "C2_r_d": 0.9918461918844368,
+      "expected_C1": 0.8037336291093641,
+      "expected_C2": 0.9918461918844368
+    },
+    "unit_invariance": {
+      "shift_log10_power": 6.0,
+      "C3_max_abs_diff_decoded_relpower": 1.6375789613221059e-15,
+      "C3_r_d_shifted": 0.9914212394675939,
+      "C1_r_d_shifted_for_contrast": 0.5560029958469049
+    }
+  },
+  "protocol_lock": "2026-11-02 13:39:33"
+}
